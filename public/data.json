@@ -1,0 +1,100 @@
+[
+  {
+    "code":"IT5550",
+    "name":"Các giải pháp và chính sách an ninh mạng",
+    "credits":"3",
+    "semester":"2024_2025_2",
+    "date":"06\/01\/2025 09:15:26"
+  },
+  {
+    "code":"IT6340",
+    "name":"Các hệ thống thông minh",
+    "credits":"2",
+    "semester":"2024_2025_2",
+    "date":"06\/01\/2025 09:15:37"
+  },
+  {
+    "code":"IT6819",
+    "name":"Kiến trúc phần mềm – các chủ đề nâng cao",
+    "credits":"2",
+    "semester":"2024_2025_2",
+    "date":"06\/01\/2025 09:15:47"
+  },
+  {
+    "code":"IT6818",
+    "name":"Mô hình hóa và phân tích phần mềm",
+    "credits":"3",
+    "semester":"2024_2025_2",
+    "date":"28\/04\/2025 16:19:20"
+  },
+  {
+    "code":"TT6000",
+    "name":"Thực tập tốt nghiệp",
+    "credits":"6",
+    "semester":"2024_2025_2",
+    "date":"14\/04\/2025 18:34:45"
+  },
+  {
+    "code":"SS6013",
+    "name":"Triết học",
+    "credits":"3",
+    "semester":"2024_2025_2",
+    "date":"14\/04\/2025 18:56:31"
+  },
+  {
+    "code":"IT4527",
+    "name":"BlockChain và ứng dụng",
+    "credits":"2",
+    "semester":"2025_2026_1",
+    "date":"08\/10\/2025 09:01:36"
+  },
+  {
+    "code":"IT5404",
+    "name":"Điện toán đám mây",
+    "credits":"3",
+    "semester":"2025_2026_1",
+    "date":"08\/10\/2025 09:01:15"
+  },
+  {
+    "code":"IT4922",
+    "name":"Mạng thế hệ sau",
+    "credits":"2",
+    "semester":"2025_2026_1",
+    "date":"08\/10\/2025 09:22:35"
+  },
+  {
+    "code":"IT6490",
+    "name":"Phương pháp Agile",
+    "credits":"2",
+    "semester":"2025_2026_1",
+    "date":"08\/10\/2025 09:38:49"
+  },
+  {
+    "code":"IT4818",
+    "name":"Phân tích nghiệp vụ thông minh",
+    "credits":"2",
+    "semester":"2025_2026_2",
+    "date":"17\/01\/2026 09:56:46"
+  },
+  {
+    "code":"IT6390",
+    "name":"Web ngữ nghĩa",
+    "credits":"3",
+    "semester":"2025_2026_2",
+    "date":"17\/01\/2026 09:57:04"
+  },
+  {
+    "code":"IT4772",
+    "name":"Xử lý ngôn ngữ tự nhiên",
+    "credits":"3",
+    "semester":"2025_2026_2",
+    "date":"17\/01\/2026 09:57:15"
+  },
+  {
+    "code":"",
+    "name":"",
+    "credits":"",
+    "semester":"",
+    "date":""
+  }
+]
