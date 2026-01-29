@@ -28,7 +28,7 @@ jobs:
 
           HUST_USERNAME: ${{ secrets.HUST_USERNAME }}
           HUST_PASSWORD: ${{ secrets.HUST_PASSWORD }}
-        run: python scripts/crawl_data.py
+        run: python script/crawl_data.py
 
       - name: Commit and Push changes
         run: |
