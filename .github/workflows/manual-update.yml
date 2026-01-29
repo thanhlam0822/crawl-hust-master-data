@@ -1,0 +1,46 @@
+name: Manual Update Data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas selenium lxml html5lib openpyxl
+
+      - name: Run Crawler Script
+        env:
+
+          HUST_USERNAME: ${{ secrets.HUST_USERNAME }}
+          HUST_PASSWORD: ${{ secrets.HUST_PASSWORD }}
+        run: python scripts/crawl_data.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+  
+          if [[ -n $(git status -s public/data.json) ]]; then
+            git add public/data.json
+            git commit -m "🤖 Auto-update: Cập nhật điểm mới nhất"
+            git push
+            echo "✅ Đã push dữ liệu mới lên GitHub!"
+          else
+            echo "⚠️ Không có dữ liệu mới thay đổi."
+          fi
