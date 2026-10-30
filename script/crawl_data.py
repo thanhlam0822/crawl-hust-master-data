@@ -94,7 +94,7 @@ def run_crawler():
                 'Số TC': 'credits',
                 'Quá trình': 'process_point',
                 'Thi': 'exam_point',
-                'TKHP': 'final_score'
+                'TKHP': 'final_score',
                 'Điểm chữ': 'letter_score',
             }
             available_cols = [c for c in rename_map.keys() if c in grade_table.columns]
