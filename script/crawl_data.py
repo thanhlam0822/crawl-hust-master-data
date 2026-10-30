@@ -7,23 +7,21 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from github import Github # Thư viện thao tác GitHub API
+from github import Github
 
-# ================= CẤU HÌNH TỪ SECRETS =================
 # Tài khoản trường
 USERNAME = os.environ["HUST_USERNAME"]
 PASSWORD = os.environ["HUST_PASSWORD"]
 
 # Cấu hình GitHub đích (Repo B)
-GH_PAT = os.environ["GH_PAT"] # Token quyền lực
-TARGET_REPO_NAME = "thanhlam0822/hust-master-tracker" # <--- TÊN REPO B CỦA BẠN (SỬA LẠI CHO ĐÚNG)
+GH_PAT = os.environ["GH_PAT"]
+TARGET_REPO_NAME = "thanhlam0822/hust-master-tracker"
 TARGET_FILE_PATH = "public/data.json" # Đường dẫn file trong Repo B
 
 # URL
 LOGIN_URL = "https://dkhsdh.hust.edu.vn/Account/login.aspx"
-RESULTS_URL = "https://dkhsdh.hust.edu.vn/StudyRegister/RegistrationHistory.aspx"
+RESULTS_URL = "https://dkhsdh.hust.edu.vn/Student/StudentMark.aspx"
 
-# ================= SETUP CHROME =================
 def get_driver():
     chrome_options = Options()
     chrome_options.add_argument('--headless')
@@ -33,7 +31,6 @@ def get_driver():
     chrome_options.add_argument('--ignore-certificate-errors')
     return webdriver.Chrome(options=chrome_options)
 
-# ================= HÀM UPDATE SANG REPO KHÁC =================
 def push_to_remote_repo(json_content):
     try:
         # Login bằng PAT
@@ -59,7 +56,6 @@ def push_to_remote_repo(json_content):
         print(f"❌ Lỗi khi đẩy sang Repo B: {e}")
         exit(1)
 
-# ================= LOGIC CRAWL =================
 def run_crawler():
     driver = get_driver()
     try:
@@ -81,7 +77,6 @@ def run_crawler():
         if len(dfs) > 0:
             grade_table = max(dfs, key=len)
 
-            # --- XỬ LÝ HEADER & DATA ---
             header_idx = -1
             for idx, row in grade_table.iterrows():
                 row_str = " ".join(row.astype(str).values)
@@ -93,22 +88,21 @@ def run_crawler():
                 grade_table.columns = grade_table.iloc[header_idx]
                 grade_table = grade_table.iloc[header_idx+1:].reset_index(drop=True)
 
-            # Đổi tên cột
             rename_map = {
                 'Mã học phần': 'code',
                 'Tên học phần': 'name',
-                'TC': 'credits',
-                'Học kỳ': 'semester',
-                'Ngày giờ đăng ký': 'date'
+                'Số TC': 'credits',
+                'Quá trình': 'process_point',
+                'Thi': 'exam_point',
+                'TKHP': 'final_score'
+                'Điểm chữ': 'letter_score',
             }
             available_cols = [c for c in rename_map.keys() if c in grade_table.columns]
             clean_df = grade_table[available_cols].rename(columns=rename_map)
             clean_df = clean_df.fillna("")
 
-            # Tạo JSON string
             json_str = clean_df.to_json(orient='records', force_ascii=False, indent=2)
 
-            # --- GỌI HÀM ĐẨY SANG REPO B ---
             print(f"3. ☁️ Tìm thấy {len(clean_df)} môn. Đang đẩy sang Repo B...")
             push_to_remote_repo(json_str)
 
